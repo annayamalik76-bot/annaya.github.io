@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff4f9a, #a855f7);
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    width: 300px;
+}
+
+.card img {
+    width: 120px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 120px;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px;
+}
+
+.yes {
+    background: white;
+    color: #ff2f7a;
+    font-weight: bold;
+}
+
+.no {
+    background: red;
+    color: white;
+    position: relative;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <img src="https://i.imgur.com/8Km9tLL.jpg">
+    <h2>Will you be my Valentine,<br>Subhaina? 💕</h2>
+
+    <button class="yes" onclick="yesClick()">❤️ Yes</button>
+    <button class="no" onmouseover="moveNo()">❌ No</button>
+</div>
+
+<script>
+function yesClick() {
+    document.body.innerHTML = "<h1 style='color:white;text-align:center;'>Yayyy 💖 I love you 😍</h1>";
+}
+
+function moveNo() {
+    const btn = document.querySelector('.no');
+    btn.style.left = Math.random() * 100 - 50 + "px";
+    btn.style.top = Math.random() * 100 - 50 + "px";
+}
+</script>
+
+</body>
+      </html>
