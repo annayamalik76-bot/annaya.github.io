@@ -1,81 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>My Valentine 💖</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffeef2;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
 
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #ff4f9a, #a855f7);
-    font-family: Arial, sans-serif;
-}
+        .container {
+            z-index: 10;
+        }
 
-.card {
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    color: white;
-    width: 300px;
-}
+        h1 {
+            color: #d63384;
+            font-size: 3rem;
+            text-shadow: 2px 2px #fff;
+        }
 
-.card img {
-    width: 120px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-}
+        .buttons {
+            margin-top: 30px;
+        }
 
-button {
-    width: 120px;
-    padding: 10px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 8px;
-}
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
 
-.yes {
-    background: white;
-    color: #ff2f7a;
-    font-weight: bold;
-}
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            margin-right: 20px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
 
-.no {
-    background: red;
-    color: white;
-    position: relative;
-}
-</style>
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+            position: absolute; /* Yeh button ko bhagaane ke liye zaroori hai */
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: absolute;
+            color: #ffb3c1;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
-    <img src="https://i.imgur.com/8Km9tLL.jpg">
-    <h2>Will you be my Valentine,<br>Subhaina? 💕</h2>
+    <div class="container">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <div class="buttons">
+            <button id="yesBtn">Yes! 😍</button>
+            <button id="noBtn">No 😢</button>
+        </div>
+    </div>
 
-    <button class="yes" onclick="yesClick()">❤️ Yes</button>
-    <button class="no" onmouseover="moveNo()">❌ No</button>
-</div>
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
 
-<script>
-function yesClick() {
-    document.body.innerHTML = "<h1 style='color:white;text-align:center;'>Yayyy 💖 I love you 😍</h1>";
-}
+        // 1. "No" button ko bhagaane ka function
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
 
-function moveNo() {
-    const btn = document.querySelector('.no');
-    btn.style.left = Math.random() * 100 - 50 + "px";
-    btn.style.top = Math.random() * 100 - 50 + "px";
-}
-</script>
+        // 2. "Yes" click karne par message
+        yesBtn.addEventListener('click', () => {
+            document.body.innerHTML = `
+                <div style="text-align:center; width:100%;">
+                    <h1 style="color:#ff4d6d; font-size:4rem;">Yayyy! ❤️</h1>
+                    <p style="font-size:1.5rem;">See you on Feb 14th!</p>
+                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5M2txZ3R3eGdyNnJ3Z3R3eGdyNnJ3Z3R3eGdyNnJ3Z3R3Z3Z3Jm1wPTY/KztT2c4u8mYYUiBtIQ/giphy.gif" width="300">
+                </div>
+            `;
+        });
 
+        // 3. Background mein hearts create karna
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
 </body>
-      </html>
+</html>
